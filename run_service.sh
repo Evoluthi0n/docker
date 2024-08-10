@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+if [ $1 == "start" ]
+then
 docker network create project_net
 
 docker run  --rm -d \
@@ -18,3 +20,11 @@ docker run  --rm -d \
 			-e PMA_PASSWORD=pass123456 \
 			-p 8080:80 \
 			phpmyadmin:5.2.1
+else
+	if [ $1 = "stop"]
+		docker stop dbhost
+		docker stop phpmyadmin
+		docker network remove project_net
+	else
+		echo Неверный параметр запуска
+fi
