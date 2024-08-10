@@ -21,10 +21,12 @@ docker run  --rm -d \
 			-p 8080:80 \
 			phpmyadmin:5.2.1
 else
-	if [ $1 = "stop"]
+	if [ $1 == "stop" ]
+	then
 		docker stop dbhost
 		docker stop phpmyadmin
 		docker network remove project_net
 	else
 		echo Неверный параметр запуска
+	fi
 fi
